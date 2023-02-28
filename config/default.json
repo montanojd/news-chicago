@@ -80,7 +80,7 @@
         "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
       },
       "zuixjs.github.io": {
-        "baseUrl": "/news-chicago/",
+        "baseUrl": "/",
         "resourcePath": "{{ app['zuixjs.github.io'].baseUrl }}app/",
         "libraryPath": {
           "@lib": "{{ app['zuixjs.github.io'].baseUrl }}lib/1.1/",
@@ -88,7 +88,7 @@
           "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
         }
       },
-      "siteMapUrl": "https://montanojd.github.io/news-chicago"
+      "siteMapUrl": "https://newschicago.netlify.app/"
     }
   }
 }

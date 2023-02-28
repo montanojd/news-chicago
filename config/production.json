@@ -58,14 +58,14 @@
     "app": {
       "title": "News Blog",
       "language": "en",
-      "baseUrl": "/newschicago/",
-      "resourcePath": "/newschicago/app/",
+      "baseUrl": "/",
+      "resourcePath": "/",
       "libraryPath": {
         "@lib": "{{ app.baseUrl }}lib/1.1/",
         "@hgui": "https://genielabs.github.io/homegenie-web-ui/app/",
         "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
       },
-      "siteMapUrl": "https://newschicago.netlify.app/home/"
+      "siteMapUrl": "https://newschicago.netlify.app/"
     }
   }
 }
