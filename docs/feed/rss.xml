@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+    <title>News Blog</title>
+    <link>https://montanojd.github.io/news-chicago</link>
+    <atom:link href="https://montanojd.github.io/news-chicago/feed/rss.xml" rel="self"></atom:link>
+    <description></description>
+    <language>en</language>
+    <copyright></copyright>
+    <lastBuildDate>Tue, 28 Feb 2023 16:36:15 -0500</lastBuildDate>
+    <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+    <image>
+        <title>News Blog</title>
+        <url>https://montanojd.github.io/news-chicago/images/icons/icon-152x152.png</url>
+        <link>https://montanojd.github.io/news-chicago</link>
+    </image>
+    <item>
+        <title>Landing Page</title>
+        <link>https://montanojd.github.io/news-chicago/</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/</guid>
+        <description>A brand new *zuix.js* project!</description>
+        <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title></title>
+        <link>https://montanojd.github.io/news-chicago/js/zuix/animate-css.js</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/js/zuix/animate-css.js</guid>
+        <description></description>
+        <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/js/zuix/animate-css.js" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title></title>
+        <link>https://montanojd.github.io/news-chicago/ui/_inc/content-frame/</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/ui/_inc/content-frame/</guid>
+        <description></description>
+        <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/ui/_inc/content-frame/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title>About</title>
+        <link>https://montanojd.github.io/news-chicago/about/</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/about/</guid>
+        <description>A news blog template inspired by G.News</description>
+        <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/about/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title>Saved bookmarks</title>
+        <link>https://montanojd.github.io/news-chicago/saved/</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/saved/</guid>
+        <description>A news blog template inspired by G.News</description>
+        <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/saved/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title>Search</title>
+        <link>https://montanojd.github.io/news-chicago/search/</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/search/</guid>
+        <description>A news blog template inspired by G.News</description>
+        <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/search/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title>Local1</title>
+        <link>https://montanojd.github.io/news-chicago/content/local/local1/</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/content/local/local1/</guid>
+        <description>Page description</description>
+        <pubDate>Mon, 27 Feb 2023 23:28:27 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/content/local/local1/" rel="self" />
+        <dc:creator></dc:creator><!-- TODO: resolve cover image url either local or on a different site -->
+        <media:content medium="image" width="300" height="125"
+                       url="https://montanojd.github.io/news-chicago/content/local/local1/https://picsum.photos/seed/local!local1/320/200" />
+        <media:credit></media:credit>
+        <media:description></media:description>
+    </item>
+    <item>
+        <title>Local</title>
+        <link>https://montanojd.github.io/news-chicago/content/local/index.json</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/content/local/index.json</guid>
+        <description></description>
+        <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/content/local/index.json" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title>Local Sports</title>
+        <link>https://montanojd.github.io/news-chicago/home/</link>
+        <guid isPermaLink="true">https://montanojd.github.io/news-chicago/home/</guid>
+        <description>A news blog template inspired by G.News</description>
+        <pubDate>Tue, 28 Feb 2023 16:36:15 -0500</pubDate>
+        <atom:link href="https://montanojd.github.io/news-chicago/home/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+</channel>
+</rss>

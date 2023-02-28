@@ -1,0 +1,977 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A news blog template inspired by G.News">
+    <meta name="keywords" content="bloglifestyle" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="author" href="humans.txt" />
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS Feed for Search"
+          href="/feed/rss.xml" />
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Progressive Web App -->
+    <meta name="theme-color" content="white">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="/images/icons/desktop/android-chrome-192x192.png">
+    <link rel="icon" sizes="512x512" href="/images/icons/desktop/android-chrome-512x512.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="A zUIx website">
+    <link rel="apple-touch-icon-precomposed" href="/images/icons/desktop/apple-touch-icon.png">
+    <link rel="mask-icon" href="/images/icons/desktop/safari-pinned-tab.svg" color="#5bbad5">
+
+    <!-- Tile color for Windows -->
+    <meta name="msapplication-TileImage" content="/images/icons/desktop/mstile-150x150.png">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/desktop/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/desktop/favicon-16x16.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="https://www.example.com/">
+    -->
+
+    <link rel="preload" as="style" href="/css/fla/flex-layout-attribute.min.css" />
+    <link rel="stylesheet" href="/css/fla/flex-layout-attribute.min.css" />
+    <link rel="preload" as="style" href="/css/animate.min.css" />
+    <link rel="stylesheet" href="/css/animate.min.css" />
+
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap">
+
+
+
+    <!-- zuix.js https://github.com/zuixjs/zuix -->
+    <link rel="preload" as="script" href="/js/zuix/zuix.min.js">
+    <link rel="preload" as="script" href="/config.js">
+    <link rel="preload" as="script" href="/js/zuix/animate-css.js">
+    <script src="/js/zuix/zuix.js"></script>
+    <script src="/config.js"></script>
+    <script src="/js/zuix/animate-css.js"></script>
+
+<style>
+    /* CSS files add styling rules to your content */
+
+body {
+    font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+    font-size: 16px;
+    margin: 0; padding: 0;
+    background: white;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    overscroll-behavior-y: contain;
+    overflow-y: hidden;
+}
+
+a, a:visited, a:hover {
+    font-weight: 700;
+   text-decoration: none;
+}
+
+button:hover, button:active, a.button:hover, a.button:active {
+    background: rgba(180,180,180,0.1)!important;
+}
+
+.content {
+    font-family: serif;
+    font-size: 110%;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.feed-pager {
+    height: 100vh;
+}
+
+.list {
+    margin-top: 96px;
+    margin-bottom: 24px;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.message {
+    color: darkgrey;
+    width: 100vw;
+    font-size: 200%;
+    overflow: hidden;
+}
+.message i {
+    margin-left: 16px;
+    color: darkgrey;
+    font-size: 150%;
+}
+
+
+.page-scroll {
+    position:absolute;
+    top:56px;
+    bottom:56px;
+    left:0;
+    right:0;
+    overflow-y: auto;
+}
+
+
+iframe[z-field=content-frame] {
+    position: fixed;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 100;
+    background: white;
+}
+
+    /* forms */
+
+.button {
+    cursor: pointer;
+    display: flex;
+    padding: 6px;
+    height: 48px;
+    margin: 6px;
+    align-items: center;
+    border-radius: 6px;
+    background-color: #bbbbbb15;
+    box-shadow: 0 1px 4px 0 #00000055;
+}
+.button:hover {
+    background-color: #bbbbbb1a;
+    box-shadow: 0 3px 8px 0 #00000055;
+}
+.theme-dark .button:hover {
+    box-shadow: 0 0 6px 2px var(--dark-color-text);
+}
+.button:active {
+    background-color: #bbbbbb26;
+    box-shadow: 0 0 2px 0 #00000055;
+}
+.button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: 0 0 0 0 #00000055;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 25px;
+}
+.input-container label {
+    position:absolute;
+    top: 8px;
+    left: 0;
+    transition: all 0.15s ease-in-out;
+}
+.input-container input, input:not([type="checkbox"]):not([type="radio"]):not(.mdl-textfield__input) {
+    z-index: 1;
+    border:0;
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid;
+    padding: 8px 0 5px 0;
+}
+.input-container input:focus, input:focus:not([type="checkbox"]):not([type="radio"]) {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bd0505;
+}
+.input-container input:focus ~ label,
+.input-container input:valid ~ label {
+    top: -14px;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+
+[type=radio],
+[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+    border: solid 1px;
+}
+[type=radio],
+[type=checkbox] {
+    width: 22px!important;
+    height: 18px;
+    margin-left: 6px;
+    margin-right: 6px;
+    position: relative;
+    border: solid 1px;
+    border-radius: 2px;
+}
+[type=radio]:checked::before,
+[type=checkbox]:checked::before {
+    content: "";
+    width: 12px;
+    height: 10px;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+}
+[type=radio],
+[type=radio]:checked::before{
+    border-radius: 100%;
+}
+
+    :root {
+    --lite-color: #fff;
+    --lite-color-text: #000;
+    --lite-nav-color: #e7e7e7;
+    --lite-nav-color-text: #282828;
+    --lite-color--accent: #ab005f;
+    --lite-color--primary: #3860ff;
+    --lite-color--code: #005000;
+    --lite-font--weigth: 400;
+
+    --dark-color: #141418;
+    --dark-color-text: #d2d2d2;
+    --dark-nav-color: #1a273b; /* #014b76; */ /* #60142d; */
+    --dark-nav-color-text: #ccc;
+    --dark-color--accent: #f1c700;
+    --dark-color--primary: #84de58;
+    --dark-color--code: #8fc563;
+    --dark-font--weigth: 400;
+}
+
+/*========================*\
+      Theme 'lite'
+\*========================*/
+
+body{
+    background-color: var(--lite-color);
+    color: var(--lite-color-text);
+    font-weight: var(--lite-font--weigth);
+}
+nav, footer {
+    background-color: var(--lite-nav-color);
+    color: var(--lite-nav-color-text);
+    fill: var(--lite-nav-color-text);
+    box-shadow: 0 4px 6px 0 rgb(0 0 0 / 20%), 0 -4px 12px 0 rgb(0 0 0 / 20%);
+}
+nav svg, .menu-button svg {
+    fill:var(--lite-nav-color-text);
+}
+svg {
+    fill:var(--lite-color-text);
+}
+nav a, footer a {
+    color: var(--lite-nav-color-text);
+}
+a {
+    color: var(--lite-color--accent);
+    text-decoration: none;
+}
+main h1, main h2, main h3 {
+    color: var(--lite-color--primary);
+}
+code:not([class*=language-]), pre:not([class*=language-]) {
+    color: var(--lite-color--code);
+}
+.accent {
+    color: var(--lite-color--accent)!important;
+    fill: var(--lite-color--accent)!important;
+}
+.primary {
+    color: var(--lite-color--primary);
+    fill: var(--lite-color--primary);
+}
+.background {
+    background-color: var(--lite-color);
+}
+.input-container input,  input {
+  color: var(--lite-color-text);
+  border-bottom-color: var(--lite-color--primary);
+}
+.input-container input:valid,  input:valid {
+  border-bottom-color: var(--lite-color--primary)!important;
+}
+
+[type=radio]:checked::before,
+
+[type=checkbox]:checked::before {
+    background-color: var(--lite-color--accent);
+}
+
+[type=radio],
+
+[type=checkbox] {
+    border-color: var(--lite-color--primary);
+}
+
+button {
+    color: var(--lite-color-text);
+    fill: var(--lite-color-text);
+}
+/* app specific classes */
+
+nav [z-field="header-tools"] .active {
+    border-bottom: solid 4px var(--lite-color--accent)!important;
+}
+
+[z-load="listview/items-list/item"] .summary .title {
+    color: var(--lite-nav-color-text);
+}
+
+[z-load="listview/items-list/item-mini"] .summary .title {
+    color: var(--lite-color-text)!important;
+}
+
+/*========================*\
+      Theme 'dark'
+\*========================*/
+
+body.theme-dark {
+    background-color: var(--dark-color);
+    color: var(--dark-color-text);
+    font-weight: var(--dark-font--weigth);
+}
+.theme-dark nav, .theme-dark footer {
+    background-color: var(--dark-nav-color);
+    color: var(--dark-nav-color-text);
+    fill: var(--dark-nav-color-text);
+    box-shadow: 0 4px 6px 0 rgb(0 0 0 / 20%), 0 -4px 12px 0 rgb(0 0 0 / 20%);
+}
+.theme-dark nav svg, .theme-dark .menu-button svg {
+    fill:var(--dark-nav-color-text);
+}
+.theme-dark svg {
+    fill:var(--dark-color-text);
+}
+.theme-dark nav a, .theme-dark footer a {
+    color: var(--dark-nav-color-text);
+}
+.theme-dark a {
+    color: var(--dark-color--accent);
+    text-decoration: none;
+}
+.theme-dark main h1, .theme-dark main h2, .theme-dark main h3 {
+    color: var(--dark-color--primary);
+}
+.theme-dark code:not([class*=language-]), .theme-dark pre:not([class*=language-]) {
+    color: var(--dark-color--code);
+}
+.theme-dark .accent {
+    color: var(--dark-color--accent)!important;
+    fill: var(--dark-color--accent)!important;
+}
+.theme-dark .primary {
+    color: var(--dark-color--primary);
+    fill: var(--dark-color--primary);
+}
+.theme-dark .background {
+    background-color: var(--dark-color);
+}
+.theme-dark .input-container input, .theme-dark  input {
+  color: var(--dark-color-text);
+  border-bottom-color: var(--dark-color--primary);
+}
+.theme-dark .input-container input:valid, .theme-dark  input:valid {
+  border-bottom-color: var(--dark-color--primary)!important;
+}
+.theme-dark 
+[type=radio]:checked::before,
+.theme-dark 
+[type=checkbox]:checked::before {
+    background-color: var(--dark-color--accent);
+}
+.theme-dark 
+[type=radio],
+.theme-dark 
+[type=checkbox] {
+    border-color: var(--dark-color--primary);
+}
+.theme-dark 
+button {
+    color: var(--dark-color-text);
+    fill: var(--dark-color-text);
+}
+/* app specific classes */
+.theme-dark 
+nav [z-field="header-tools"] .active {
+    border-bottom: solid 4px var(--dark-color--accent)!important;
+}
+.theme-dark 
+[z-load="listview/items-list/item"] .summary .title {
+    color: var(--dark-nav-color-text);
+}
+.theme-dark 
+[z-load="listview/items-list/item-mini"] .summary .title {
+    color: var(--dark-color-text)!important;
+}
+
+/*
+---------------------------------
+ */
+
+.theme-toggle[type=checkbox] {
+    margin: 0;
+    --size: 32px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: var(--size)!important;
+    height: var(--size)!important;
+    box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
+    border-radius: var(--size);
+    transition: all 500ms;
+    color: var(--lite-nav-color-text);
+}
+.theme-toggle[type=checkbox]:checked {
+    --ray-size: calc(var(--size) * -0.4);
+    --offset-orthogonal: calc(var(--size) * 0.65);
+    --offset-diagonal: calc(var(--size) * 0.45);
+    transform: scale(0.75);
+    box-shadow: inset 0 0 0 var(--size),
+        calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size),
+        var(--offset-orthogonal) 0 0 var(--ray-size),
+        0 calc(var(--offset-orthogonal) * -1) 0 var(--ray-size),
+        0 var(--offset-orthogonal) 0 var(--ray-size),
+        calc(var(--offset-diagonal) * -1) calc(var(--offset-diagonal) * -1) 0 var(--ray-size),
+        var(--offset-diagonal) var(--offset-diagonal) 0 var(--ray-size),
+        calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0 var(--ray-size),
+        var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size);
+    color: var(--dark-nav-color-text);
+    background-color: transparent!important;
+}
+.theme-toggle[type=checkbox]:checked::before {
+    background-color: transparent!important;
+}
+
+/* ----- MENU OVERLAY COMPONENT ----- */
+[z-load*="/components/menu-overlay"] .circle-button {
+    border: solid 1px var(--lite-color);
+    background-color: var(--lite-nav-color)!important;
+    fill: var(--lite-nav-color-text)!important;
+}
+[z-load*="/components/menu-overlay"] .circle-button .material-icons {
+    color: var(--lite-nav-color-text);
+}
+.theme-dark [z-load*="/components/menu-overlay"] .circle-button .material-icons {
+    color: var(--dark-nav-color-text);
+}
+.theme-dark [z-load*="/components/menu-overlay"] .circle-button {
+    border: solid 1px var(--dark-color);
+    background-color: var(--dark-nav-color)!important;
+    fill: var(--dark-nav-color-text)!important;
+}
+.theme-dark [z-load*="/components/menu-overlay"] div[z-field="menu_overlay"] {
+    background: radial-gradient(circle at bottom, black, #000000dd, #00000077, transparent)!important;
+}
+
+/* ------ CONTEXT MENU ------ */
+.theme-dark [z-load*="/components/context-menu"] .menu {
+    background: var(--dark-nav-color)!important;
+}
+.theme-dark [z-load*="/components/context-menu"] .container {
+    background: rgba(0,0,0,0.65)!important;
+}
+
+/* View-Pager List Cards */
+[z-load="listview/items-list/item"] .summary {
+    background-color: rgba(230, 230, 230, 0.7);
+    transition: background-color 0.3s ease-in-out;
+}
+.theme-dark [z-load="listview/items-list/item"] .summary {
+    background-color: rgba(20, 20, 20, 0.7);
+    transition: background-color 0.3s ease-in-out;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<noscript>
+Turn on JavaScript to access this site content.
+</noscript>
+
+<!-- The header bars (for each page) -->
+
+<nav z-field="header-bar" z-component="fragment" header-bar="">
+
+    <div class="header" layout="row center-justify" header-bar="">
+        <div z-field="header-box" layout="row center-left" header-bar="">
+
+          
+            <!-- Search toolbar -->
+            <div layout="row center-center" style="padding-left: 32px" header-bar="">
+                <div class="search-box" header-bar="">
+                <span class="input" header-bar="">
+                    <input z-field="search-input" type="search" autofocus="" placeholder="Enter search terms" header-bar="">
+                    <span header-bar=""></span>
+                </span>
+                </div>
+            </div>
+
+            
+
+        </div>
+        <div style="margin: 12px;" header-bar="">
+            <input class="theme-toggle" type="checkbox" aria-label="Toggle theme" checked="" header-bar="">
+        </div>
+    </div>
+    <div z-field="header-tools" header-bar="">
+
+        
+
+    </div>
+
+</nav>
+
+<style>
+
+[z-component][header-bar] {
+    position: fixed;    top:0;    left:0;    right:0;    height:auto;    border-bottom: solid 1px rgba(0,0,0,0.1);    box-shadow: 0 0 8px -1px rgba(0,0,0,0.5);    z-index: 2!important;}
+
+[z-component][header-bar]
+.header {
+    height: 56px;    max-height: 56px;}
+
+[z-component][header-bar]
+.title {
+    font-size: 180%;    font-weight: 550;}
+
+[z-component][header-bar]
+.logo {
+    margin-right: 12px;}
+
+[z-component][header-bar]
+.topics {
+    width: 100%;    height:40px;}
+
+[z-component][header-bar]
+.topics div {
+    font-size: 16px;    height:36px;    min-width: 96px;    text-align: center;    vertical-align: middle;    line-height: 36px;    border-bottom: solid 4px transparent;    cursor: pointer;}
+
+[z-component][header-bar]
+[z-field="header-box"] {
+    padding-left: 12px;    padding-right: 12px;    height: 100%;}
+
+[z-component][header-bar]
+.header-button {
+    padding: 0;    background: transparent;    border: none;    border-radius: 8px;    opacity: 0.7;}
+
+[z-component][header-bar]
+.header-button i {
+    font-size: 200%;    padding: 12px;}
+
+[z-component][header-bar]
+[z-field="header-tools"] .active {
+    font-weight: bold;}
+
+[z-component][header-bar]
+.search-box {
+    width: 100%;    max-width: 640px;    height: 100%;    text-align: center;    display: flex;    align-items: center;    justify-content: center;}
+
+[z-component][header-bar]
+.search-box input {
+    background-color: var(--lite-color);    width: 100%;    font-size: 130%;    font-family: inherit;    line-height: inherit;    color: #2e3750;    min-width: 12em;    transition: background-color 0.3s ease-in-out;}
+
+[z-component][header-bar]
+.search-box .input {
+    width: 100%;    position: relative;    background: linear-gradient(21deg, #10abff, #1beabd);    padding: 1px;    display: inline-block;    border-radius: 9999em;    margin: 8px;}
+
+[z-component][header-bar]
+.search-box .input *:not(span) {
+    position: relative;    display: inherit;    border-radius: inherit;    margin: 0;    border: none;    outline: none;    padding: 3px 8px;    z-index: 1;}
+
+[z-component][header-bar]
+.search-box .input *:not(span):focus + span {
+    opacity: 1;    -webkit-transform: scale(1);    transform: scale(1);}
+
+[z-component][header-bar]
+.search-box .input span {
+    -webkit-transform: scale(1);    transform: scale(1);    transition: opacity .25s, -webkit-transform .5s;    transition: transform .5s, opacity .25s;    transition: transform .5s, opacity .25s, -webkit-transform .5s;    opacity: 0;    position: absolute;    z-index: 0;    margin: 4px;    left: 0;    top: 0;    right: 0;    bottom: 0;    border-radius: inherit;    pointer-events: none;    box-shadow: inset 0 0 0 2px #fff, 0 0 0 2px #fff, 2px -2px 11px #1beabd,  -2px 2px 11px #10abff;}
+
+[z-component][header-bar]
+.search-box ::-webkit-input-placeholder {
+    color: #cbd0d5;}
+
+[z-component][header-bar]
+.search-box :-ms-input-placeholder {
+    color: #cbd0d5;}
+
+[z-component][header-bar]
+.search-box ::-ms-input-placeholder {
+    color: #cbd0d5;}
+
+[z-component][header-bar]
+.search-box ::placeholder {
+    color: #cbd0d5;}
+
+.theme-dark [header-bar] .search-box input {
+    background-color: var(--dark-color);
+    color: var(--dark-color-text);
+}
+.theme-dark [header-bar] .search-box input::placeholder {
+    opacity: 0.5;
+}
+</style>
+
+
+<main z-field="pages" layout="column stretch-stretch">
+
+<section class="page-scroll" layout="column top-center"
+         ctrl z-load="pages/search" z-context="search-page" z-lazy="scroll">
+
+    <div #cover class="message" self="size-x1 stretch-stretch" layout="column center-center">
+        <div class="animate__animated animate__pulse animate__faster" layout="row center-center">
+            <div>Search</div>
+            <i class="material-icons">search</i>
+        </div>
+    </div>
+    <div #no-results class="message hidden" self="size-x1 stretch-stretch" layout="column center-center">
+        <div class="animate__animated animate__rubberBand animate__faster" layout="row center-center">
+            <div>No results</div>
+            <i class="material-icons">search_off</i>
+        </div>
+    </div>
+
+    <div self="size-medium" layout="column top-stretch">
+        <!-- zuix.js list-view component -->
+        <div z-context="results-list" ctrl z-load="@lib/controllers/list-view"></div>
+    </div>
+
+</section>
+
+<!-- Fuse JS -->
+<script src="/js/fuse/fuse.min.js" defer async></script>
+
+
+<div z-load="cms/zuix-editor" z-context="zuix-editor" z-lazy="false" class="visible-on-ready" style="z-index: 10000">
+        <div #sections>
+            
+                <div>
+                    <div #name>local</div>
+                </div>
+            
+        </div>
+    </div>
+    <script>
+      let contentSections = [];
+      
+      contentSections['local'] = {
+        section: 'local',
+        title: 'Local',
+        page: {
+          url: '/content/local/index.json',
+          filePathStem: '/content/local/index',
+          inputPath: './source/content/local/index.liquid',
+          outputPath: 'docs/content/local/index.json'
+        }
+      };
+      
+      var zuixEditor = null;
+      zuix.context('zuix-editor', function(ctx) {
+        zuixEditor = ctx
+        zuixEditor.data = {"app":{"title":"News Blog","baseUrl":"/","language":"en","resourcePath":"/app/","libraryPath":{"@lib":"/lib/1.1/","@hgui":"https://genielabs.github.io/homegenie-web-ui/app/","@cdnjs":"https://cdnjs.cloudflare.com/ajax/libs/"},"zuixjs.github.io":{"baseUrl":"/news-chicago/","resourcePath":"/news-chicago/app/","libraryPath":{"@lib":"/news-chicago/lib/1.1/","@hgui":"https://genielabs.github.io/homegenie-web-ui/app/","@cdnjs":"https://cdnjs.cloudflare.com/ajax/libs/"}},"siteMapUrl":"https://montanojd.github.io/news-chicago","environment":"default"},"eleventy":{"version":"2.0.0","generator":"Eleventy v2.0.0","env":{"source":"cli","config":"D:/APPWEBVIEW/670 Score/Blog 28 Febrero/news-blog-main/.eleventy.js","root":"D:/APPWEBVIEW/670 Score/Blog 28 Febrero/news-blog-main"}},"date":"Last Modified","elasticlunr":true,"layout":"immersive.liquid","permalink":"/search/index.html","header":"search","tags":["templates"],"group":"templates","options":"none","icon":"newspaper","order":0,"theme":"none","title":"Search","description":"A news blog template inspired by G.News","keywords":["blog","lifestyle"],"page":{"date":"2023-02-28T21:23:57.063Z","inputPath":"./source/ui/search/index.liquid","fileSlug":"search","filePathStem":"/ui/search/index","outputFileExtension":"html","templateSyntax":"liquid","url":"/search/","outputPath":"docs/search/index.html"}};
+      });
+      function setEditorData(pageData, hideEdit) {
+        zuix.context('zuix-editor', function(ed) {
+          if (!pageData) {
+            ed.mode({
+              editPage: false,
+              deletePage: false,
+              addPage: true,
+              addComponent: true,
+              rebuildAll: true
+            });
+          } else if (pageData.section) {
+            // section / group
+            ed.mode({
+              editPage: false,
+              deletePage: true,
+              addPage: true,
+              addComponent: true,
+              rebuildAll: true,
+              data: pageData
+            });
+          } else {
+            // single page
+            pageData.section = pageData.group;
+            ed.mode({
+              editPage: !hideEdit,
+              deletePage: true,
+              addPage: false,
+              addComponent: false,
+              rebuildAll: false,
+              data: pageData
+            });
+          }
+        });
+      }
+    </script>
+
+<!-- iframe for displaying pages -->
+<iframe z-field="content-frame" class="hidden"></iframe>
+
+<script>
+    let currentEditorMode = null;
+    const contentFrame = zuix.field('content-frame');
+    function openContentFrame(url) {
+        setTimeout(function() {
+            contentFrame.animateCss('slideInRight', {duration: '300ms'}, function() {
+                contentFrame.get().focus();
+            }).removeClass('hidden');
+        }, 200);
+        contentFrame.get().src = url;
+        currentEditorMode = zuixEditor.mode();
+        ___browserSync___.socket.disconnect();
+    }
+    function closeContentFrame(loc) {
+        contentFrame.animateCss('slideOutRight', {duration: '300ms'}, ()=> {
+            contentFrame.addClass('hidden');
+            loc && loc.replace('about:blank');
+        });
+        zuixEditor.mode(currentEditorMode);
+        ___browserSync___.socket.connect();
+    }
+    contentFrame.get().onload = function() {
+        // Update zuix-editor menu available options
+        const cw = contentFrame.get().contentWindow;
+        if (cw.zuixEditor) {
+            cw.zuixEditor.data.host = cw;
+            setEditorData(cw.zuixEditor.data);
+        }
+    }</script>
+
+
+<script>
+// zuix-editor events handling
+zuix.context('zuix-editor', function(ed) {
+    ed.mode({hidden: true});
+    ed.on({
+        'zuix:action:progress': function(e, ar) {
+            if (ar.action === 'delete-page') {
+                closeContentFrame(contentFrame.get().contentWindow.location);
+            }
+        },
+        'zuix:action:result': function(e, ar) {
+            refresh();
+        }
+    });
+});
+function refresh() {
+    const searchPage = zuix.context('search-page');
+    searchPage.loadIndex(function() {
+        searchPage.search();
+    });
+}
+</script>
+
+</main>
+
+<!-- the pop-up context menu -->
+<div z-load="@lib/components/context-menu" class="visible-on-ready"
+     z-field="item-options-menu" z-lazy="false">
+    <div #menu>
+        <button #open-btn layout="row center-left">
+            <i class="material-icons">file_open</i>
+            <span>Open</span>
+        </button>
+        <button #bookmark-add-btn layout="row center-left">
+            <i class="material-icons">bookmark_add</i>
+            <span>Save for later</span>
+        </button>
+        <button #bookmark-remove-btn layout="row center-left">
+            <i class="material-icons accent">bookmark_remove</i>
+            <span>Remove from saved</span>
+        </button>
+        <button layout="row center-left" disabled>
+            <i class="material-icons">not_interested</i>
+            <span>Hide items from this source</span>
+        </button>
+        <button layout="row center-left" disabled>
+            <i class="material-icons">thumb_up</i>
+            <span>More like this</span>
+        </button>
+        <button layout="row center-left" disabled>
+            <i class="material-icons">thumb_down</i>
+            <span>Less like this</span>
+        </button>
+    </div>
+</div>
+
+
+<!-- The footer with page select buttons -->
+
+<footer z-field="footer-bar" layout="row center-center" z-component="fragment" footer-bar="">
+
+    
+    
+    <a href="/home/" layout="column center-center" class="bar-button" footer-bar="">
+        <i class="material-icons" footer-bar="">home</i>
+        <span footer-bar="">Home</span>
+    </a>
+
+    
+    
+    <a href="/search/" layout="column center-center" class="bar-button active" footer-bar="">
+        <i class="material-icons" footer-bar="">search</i>
+        <span footer-bar="">Search</span>
+    </a>
+
+    
+    
+    <a href="/saved/" layout="column center-center" z-field="saved-button" class="bar-button" footer-bar="">
+        <i class="material-icons" footer-bar="">bookmarks</i>
+        <span footer-bar="">Saved</span>
+    </a>
+
+    
+    
+   
+
+</footer>
+
+<style>
+[z-component][footer-bar] {
+    position: fixed;    left:0; bottom:0; right: 0;    height: 56px;    border-top: solid 1px rgba(0,0,0,0.1);    box-shadow: 0 0 8px -1px rgba(0,0,0,0.5);    text-align: center;    overflow: hidden;}
+
+[z-component][footer-bar]
+a.bar-button {
+    font-weight: 400;    width: 56px;    max-height: 56px;    margin-left: 8px;    margin-right: 8px;    background: transparent;    border: none;    border-radius: 8px;    text-align: center;    transition: color 0.5s ease-in-out;}
+
+[z-component][footer-bar]
+a.bar-button:focus {
+outline:0;}
+
+[z-component][footer-bar]
+a.bar-button i {
+    opacity: 0.7;    font-size: 24px !important;    padding: 2px;}
+
+[z-component][footer-bar]
+a.bar-button span {
+    opacity: 0.7;    font-size: 12px;}
+
+[z-component][footer-bar]
+a.active, 
+[z-component][footer-bar]
+a.active i, 
+[z-component][footer-bar]
+a:hover, 
+[z-component][footer-bar]
+a:hover i, 
+[z-component][footer-bar]
+a.active span {
+    opacity: 1.0!important;}
+
+footer .active  {
+    color: var(--lite-color--accent);
+}
+.theme-dark footer .active {
+    color: var(--dark-color--accent)!important;
+}
+</style>
+
+
+
+<!-- Built with love using zUIx Web Starter -->
+
+
+
+</body>
+
+<script>
+/* global zuix */
+
+//window.__zuix__debug = true;
+zuix.lazyLoad(true, -window.innerWidth / 4);
+
+options = {
+  pageIndicator: {
+    enablePaging: true,
+    startGap: 40,
+    ready: function(pageIndicator) {
+      const pageButtons = pageIndicator.$.find('div');
+      if (pageButtons.length() > 0) {
+        pageButtons.each(function(i, el, $el) {
+          $el.on('click', function(e) {
+            if (viewPager) viewPager.page(i);
+          });
+        });
+      }
+    }
+  }
+};
+
+function syncPageIndicator(page) {
+  zuix.context('page-indicator', function(pageIndicator) {
+    const pageButtons = pageIndicator.$.find('div');
+    pageButtons.eq(page.out).removeClass('active');
+    pageButtons.eq(page.in).addClass('active');
+    pageIndicator.page(page.in);
+  });
+}
+
+themeSetup();
+function themeSetup() {
+  const doc = zuix.$(document.body);
+  const toggle = doc.find('.theme-toggle');
+  const themeDark = 'theme-dark';
+  const storeKey = 'app.theme';
+  const fadeColors = {
+    transition: 'color 300ms ease-in, background-color 300ms ease-in'
+  };
+  setTimeout(function() {
+    doc.css(fadeColors);
+    doc.find('header').css(fadeColors);
+    doc.find('nav').css(fadeColors);
+    doc.find('footer').css(fadeColors);
+  }, 100);
+  toggle.on('change', toggleTheme);
+  toggleTheme();
+  function toggleTheme(ev) {
+    const checked = ev ?
+      toggle.checked() :
+      localStorage.getItem(storeKey) === 'true';
+    !ev && toggle.checked(checked);
+    checked ? doc.addClass(themeDark) : doc.removeClass(themeDark);
+    document.documentElement.style
+        .setProperty('color-scheme', checked ? 'dark' : 'light');
+    localStorage.setItem(storeKey, String(checked));
+  }
+}
+
+
+
+
+</script>
+
+
+</html>
+

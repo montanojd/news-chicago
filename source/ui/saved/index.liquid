@@ -1,0 +1,56 @@
+---
+layout: immersive.liquid
+permalink: /saved/index.html
+tags: templates
+group: templates
+options: none
+icon: newspaper
+order: 0
+theme: none
+title: Saved bookmarks
+description: A news blog template inspired by G.News
+keywords:
+- blog
+- lifestyle
+---
+
+<section class="page-scroll" z-context="bookmarks" layout="column top-center"
+         ctrl z-load="pages/saved" z-lazy="scroll">
+
+    <div #no-bookmarks class="message" self="size-x1 stretch-stretch" layout="column center-center">
+        <div class="animate__animated animate__pulse animate__faster" layout="row center-center">
+            <div>No bookmarks</div>
+            <i class="material-icons">bookmark_border</i>
+        </div>
+    </div>
+
+    <div self="size-medium stretch-center" layout="column top-stretch">
+        <div ctrl z-load="@lib/controllers/list-view" z-context="bookmarks-list" z-lazy="false"></div>
+    </div>
+
+</section>
+
+{% include 'layouts/common/zuix-editor.liquid' %}
+{% include '../_inc/content-frame.liquid' %}
+
+{% if zuixEditor -%}
+<script>
+// zuix-editor events handling
+zuix.context('zuix-editor', function(ed) {
+    ed.mode({hidden: true});
+    ed.on({
+        'zuix:action:progress': function(e, ar) {
+            if (ar.action === 'delete-page') {
+                closeContentFrame(contentFrame.get().contentWindow.location);
+            }
+        },
+        'zuix:action:result': function(e, ar) {
+            refresh();
+        }
+    });
+});
+function refresh() {
+    // TODO: not implemented
+}
+</script>
+{% endif -%}

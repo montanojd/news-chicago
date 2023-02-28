@@ -1,0 +1,51 @@
+function closeContent() {
+  if (window.parent.location.pathname === '/editor/') {
+    return;
+  }
+  if (window.parent.closeContentFrame) {
+    window.parent.closeContentFrame(location);
+  } else if(parent.top.location.pathname !== '/editor/') {
+    location.href = '../../../home/#{{ group | slugify }}';
+  }
+}
+function shareContent() {
+  const item = {
+    title: document.title,
+    text: document.querySelector('meta[name="description"]').content,
+    url: document.location.href
+  };
+  if (navigator.share) {
+    navigator.share(item).then(() => {
+      console.log('Document url shared.');
+    }).catch(console.error);
+  } else {
+    console.log(item);
+    console.log('Sharing is not available in the current context');
+  }
+}
+function printContent() {
+  setTimeout(window.print, 750);
+}
+
+document.body.addEventListener('keyup', function(e) {
+  if (e.key === 'Escape') {
+    const actionMenu = zuix.context('actions-menu');
+    if (!actionMenu || !actionMenu.showing()) {
+      closeContent();
+    }
+  }
+});
+
+const history = window.history;
+if (history && history.pushState) {
+  history.pushState('back-detect', null, '#open');
+  window.onpopstate = function() {
+    closeContent();
+  };
+}
+
+{% include '../common/theme.js' %}
+
+{% if options contains 'ext-links' -%}
+{% include '../common/external-links.js.liquid'  %}
+{% endif %}

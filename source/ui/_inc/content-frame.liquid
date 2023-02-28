@@ -1,0 +1,44 @@
+<!-- iframe for displaying pages -->
+<iframe z-field="content-frame" class="hidden"></iframe>
+
+<script>
+    {%- if zuixEditor %}
+    let currentEditorMode = null;
+    {%- endif %}
+    const contentFrame = zuix.field('content-frame');
+    function openContentFrame(url) {
+        setTimeout(function() {
+            contentFrame.animateCss('slideInRight', {duration: '300ms'}, function() {
+                contentFrame.get().focus();
+            }).removeClass('hidden');
+        }, 200);
+        contentFrame.get().src = url;
+
+        {%- if zuixEditor %}
+        currentEditorMode = zuixEditor.mode();
+        ___browserSync___.socket.disconnect();
+        {%- endif %}
+    }
+    function closeContentFrame(loc) {
+        contentFrame.animateCss('slideOutRight', {duration: '300ms'}, ()=> {
+            contentFrame.addClass('hidden');
+            loc && loc.replace('about:blank');
+        });
+
+        {%- if zuixEditor %}
+        zuixEditor.mode(currentEditorMode);
+        ___browserSync___.socket.connect();
+        {%- endif %}
+    }
+
+    {%- if zuixEditor %}
+    contentFrame.get().onload = function() {
+        // Update zuix-editor menu available options
+        const cw = contentFrame.get().contentWindow;
+        if (cw.zuixEditor) {
+            cw.zuixEditor.data.host = cw;
+            setEditorData(cw.zuixEditor.data);
+        }
+    }
+    {%- endif -%}
+</script>

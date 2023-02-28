@@ -1,0 +1,2 @@
+
+{"keys":[{"path":["title"],"id":"title","weight":1,"src":"title","getFn":null},{"path":["description"],"id":"description","weight":1,"src":"description","getFn":null},{"path":["content"],"id":"content","weight":1,"src":"content","getFn":null}],"records":[{"i":0,"$":{"0":{"v":"Local1","n":1},"1":{"v":"Page description","n":0.707}}}]}

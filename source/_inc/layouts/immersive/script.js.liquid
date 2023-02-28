@@ -1,0 +1,36 @@
+/* global zuix */
+
+//window.__zuix__debug = true;
+zuix.lazyLoad(true, -window.innerWidth / 4);
+
+options = {
+  pageIndicator: {
+    enablePaging: true,
+    startGap: 40,
+    ready: function(pageIndicator) {
+      const pageButtons = pageIndicator.$.find('div');
+      if (pageButtons.length() > 0) {
+        pageButtons.each(function(i, el, $el) {
+          $el.on('click', function(e) {
+            if (viewPager) viewPager.page(i);
+          });
+        });
+      }
+    }
+  }
+};
+
+function syncPageIndicator(page) {
+  zuix.context('page-indicator', function(pageIndicator) {
+    const pageButtons = pageIndicator.$.find('div');
+    pageButtons.eq(page.out).removeClass('active');
+    pageButtons.eq(page.in).addClass('active');
+    pageIndicator.page(page.in);
+  });
+}
+
+{% include '../common/theme.js' %}
+
+{% if options contains 'ext-links' -%}
+{% include '../common/external-links.js.liquid'  %}
+{% endif %}

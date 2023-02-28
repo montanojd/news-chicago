@@ -1,0 +1,94 @@
+{
+  "zuix": {
+    "build": {
+      "input": "source",
+      "output": "docs",
+      "copy": [
+        "css",
+        "images",
+        ".nojekyll",
+        "browserconfig.xml",
+        "manifest.json",
+        "humans.txt",
+        "favicon.ico",
+        "robots.txt",
+        "content/**/*.jpg",
+        "content/**/*.png",
+        "content/**/*.webp",
+        "content/**/*.gif",
+        "content/**/*.svg",
+        "content/**/*.json"
+      ],
+      "ignore": [
+        "_filters",
+        "content/**/_inc/*"
+      ],
+      "dataFolder": "_data",
+      "includesFolder": "_inc",
+      "componentsFolders": [ "app", "lib" ],
+      "contentFolder": "content",
+      "dependencies": [{
+        "zuix-dist/js": "js/zuix",
+        "fuse.js/dist": "js/fuse",
+        "flex-layout-attribute/css": "css/fla",
+        "animate.css/animate.min.css": "css",
+        "codemirror/lib": "js/codemirror",
+        "codemirror/mode/markdown": "js/codemirror",
+        "codemirror/mode/gfm": "js/codemirror",
+        "codemirror/mode/yaml": "js/codemirror",
+        "codemirror/mode/yaml-frontmatter": "js/codemirror",
+        "codemirror/mode/javascript": "js/codemirror",
+        "codemirror/mode/htmlmixed": "js/codemirror",
+        "codemirror/mode/css": "js/codemirror",
+        "codemirror/mode/xml": "js/codemirror",
+        "codemirror/addon/mode/overlay.js": "js/codemirror",
+        "codemirror/theme/blackboard.css": "js/codemirror",
+        "codemirror/theme/darcula.css": "js/codemirror",
+        "codemirror/theme/abcdef.css": "js/codemirror",
+        "codemirror/theme/ayu-dark.css": "js/codemirror"
+      }],
+      "bundle": {
+        "js": false,
+        "css": false,
+        "zuix": false
+      },
+      "mirror": "",
+      "serviceWorker": false,
+      "minify": {
+        "disable": true,
+        "collapseWhitespace": true,
+        "removeOptionalTags": true,
+        "removeRedundantAttributes": true,
+        "removeScriptTypeAttributes": true,
+        "removeTagWhitespace": false,
+        "useShortDoctype": false,
+        "collapseBooleanAttributes": true,
+        "removeAttributeQuotes": false,
+        "removeEmptyAttributes": true,
+        "minifyCSS": true,
+        "minifyJS": true
+      }
+    },
+    "app": {
+      "title": "News Blog",
+      "baseUrl": "/",
+      "language": "en",
+      "resourcePath": "/app/",
+      "libraryPath": {
+        "@lib": "{{ app.baseUrl }}lib/1.1/",
+        "@hgui": "https://genielabs.github.io/homegenie-web-ui/app/",
+        "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
+      },
+      "zuixjs.github.io": {
+        "baseUrl": "/news-chicago/",
+        "resourcePath": "{{ app['zuixjs.github.io'].baseUrl }}app/",
+        "libraryPath": {
+          "@lib": "{{ app['zuixjs.github.io'].baseUrl }}lib/1.1/",
+          "@hgui": "https://genielabs.github.io/homegenie-web-ui/app/",
+          "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
+        }
+      },
+      "siteMapUrl": "https://montanojd.github.io/news-chicago"
+    }
+  }
+}
